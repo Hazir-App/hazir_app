@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hazir_app/hazir_theme/hazir_theme.dart';
+import 'package:hazir_app/presentation/theme/hazir_theme.dart';
 import 'package:hazir_app/presentation/screens/home_screen/home_screen.dart';
 import 'package:hazir_app/routes/routes.dart';
 

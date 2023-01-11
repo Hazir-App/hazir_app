@@ -1,12 +1,11 @@
 library hazir_theme;
 
 import 'package:flutter/material.dart';
+import 'package:hazir_app/presentation/theme/elevation.dart';
 
 class HazirTheme {
-  
   HazirTheme._();
   static final HazirTheme instance = HazirTheme._();
-
 
   final _lightColorScheme = const ColorScheme(
     brightness: Brightness.light,
@@ -28,7 +27,7 @@ class HazirTheme {
     onErrorContainer: Color(0xFF410002),
     background: Color(0xFFF6FEFF),
     onBackground: Color(0xFF001F24),
-    surface: Color(0xFFF6FEFF),
+    surface: Color(0xFFFFFFFF),
     onSurface: Color(0xFF001F24),
     surfaceVariant: Color(0xFFECDFE9),
     onSurfaceVariant: Color(0xFF4D444C),
@@ -72,6 +71,38 @@ class HazirTheme {
     surfaceTint: Color(0xFFF5AEFF),
   );
 
-  get lightTheme => ThemeData(useMaterial3: true, colorScheme: _lightColorScheme);
-  get darkTheme => ThemeData(useMaterial3: true, colorScheme: _darkColorScheme);
+  ColorScheme _getColorScheme({required bool isLight}) => isLight ? _lightColorScheme : _darkColorScheme;
+
+  AppBarTheme _getAppBarTheme(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return Theme.of(context).appBarTheme.copyWith(
+        titleSpacing: 0,
+        elevation: 4,
+        shadowColor: _getColorScheme(isLight: isLight).shadow,
+        centerTitle: false,
+        color: _getColorScheme(isLight: isLight).primary,
+        foregroundColor: _getColorScheme(isLight: isLight).onPrimary,
+        iconTheme: IconThemeData(color: _getColorScheme(isLight: isLight).onPrimary));
+  }
+
+  List<ThemeExtension<dynamic>> _getThemeExtensions(BuildContext context) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return [
+      Elevation(
+        style1: BoxDecoration(
+          color: _getColorScheme(isLight: isLight).surface,
+          boxShadow: [
+            BoxShadow(color: _getColorScheme(isLight: isLight).onBackground.withOpacity(0.1), blurRadius: 8, offset: const Offset(0, 4)),
+          ],
+        ),
+      ),
+    ];
+  }
+
+  ThemeData getTheme(BuildContext context, {required isLight}) => ThemeData(
+        useMaterial3: true,
+        colorScheme: _getColorScheme(isLight: isLight),
+        appBarTheme: _getAppBarTheme(context),
+        extensions: _getThemeExtensions(context),
+      );
 }
