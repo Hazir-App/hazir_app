@@ -76,11 +76,13 @@ class HazirTheme {
   AppBarTheme _getAppBarTheme(BuildContext context) {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return Theme.of(context).appBarTheme.copyWith(
-          elevation: 4,
-          shadowColor: _getColorScheme(isLight: isLight).shadow,
-          centerTitle: false,
-          color: _getColorScheme(isLight: isLight).primary,
-        );
+        titleSpacing: 0,
+        elevation: 4,
+        shadowColor: _getColorScheme(isLight: isLight).shadow,
+        centerTitle: false,
+        color: _getColorScheme(isLight: isLight).primary,
+        foregroundColor: _getColorScheme(isLight: isLight).onPrimary,
+        iconTheme: IconThemeData(color: _getColorScheme(isLight: isLight).onPrimary));
   }
 
   List<ThemeExtension<dynamic>> _getThemeExtensions(BuildContext context) {
