@@ -9,8 +9,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: HazirTheme.instance.lightTheme,
-      darkTheme: HazirTheme.instance.lightTheme,
+      theme: HazirTheme.instance.getTheme(context, isLight: true),
+      darkTheme: HazirTheme.instance.getTheme(context, isLight:false),
+      debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
     );
   }
