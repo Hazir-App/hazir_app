@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "722126546862",
+    "project_id": "hazir-app",
+    "storage_bucket": "hazir-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722126546862:android:0f73b97db2813711278a3f",
+        "android_client_info": {
+          "package_name": "com.example.hazir_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722126546862-gbs571kfrpbcp2t5d1413imiadiopt40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCkJ_Imcx_Qw4_SLSJMDDvTIKTwUk4xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722126546862-gbs571kfrpbcp2t5d1413imiadiopt40.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722126546862-cp006i85e247h55junpvtsfth0u7fc60.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hazirApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722126546862:android:6f4558ff51e64f8b278a3f",
+        "android_client_info": {
+          "package_name": "com.habib.hazir_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722126546862-gbs571kfrpbcp2t5d1413imiadiopt40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCkJ_Imcx_Qw4_SLSJMDDvTIKTwUk4xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722126546862-gbs571kfrpbcp2t5d1413imiadiopt40.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722126546862-cp006i85e247h55junpvtsfth0u7fc60.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hazirApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
