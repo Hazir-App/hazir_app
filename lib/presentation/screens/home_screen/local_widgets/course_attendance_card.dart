@@ -12,7 +12,7 @@ class CourseAttendaceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(CourseScreen.screenName);
+        Navigator.of(context).pushNamed(CourseScreen.route);
       },
       child: Container(
         decoration: Theme.of(context).extension<Elevation>()?.style1?.copyWith(

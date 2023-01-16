@@ -9,7 +9,7 @@ import 'local_widgets/course_info.dart';
 class CourseScreen extends StatelessWidget {
   const CourseScreen({super.key});
 
-  static String get screenName => 'course';
+  static String get route => '/course';
 
   @override
   Widget build(BuildContext context) {

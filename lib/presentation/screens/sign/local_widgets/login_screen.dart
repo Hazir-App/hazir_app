@@ -1,10 +1,9 @@
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  static String get screenName => "login";
+  static String get screenName => "/login";
 
 
   @override
