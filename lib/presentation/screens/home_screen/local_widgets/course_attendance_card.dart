@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hazir_app/presentation/theme/elevation.dart';
-import 'package:hazir_app/presentation/screens/course_screen/course_screen.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+import 'package:hazir_app/presentation/screens/course_screen/course_screen.dart';
+import 'package:hazir_app/presentation/theme/elevation.dart';
+
 class CourseAttendaceCard extends StatelessWidget {
+  
   const CourseAttendaceCard({
     Key? key,
   }) : super(key: key);

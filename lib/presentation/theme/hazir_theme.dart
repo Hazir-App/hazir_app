@@ -99,6 +99,13 @@ class HazirTheme {
     ];
   }
 
+  // ElevatedButtonTheme _getElevatedButtonTheme(BuildContext context){
+  //   style: ButtonStyle(
+  //     backgroundColor: MaterialStateProperty.all(_colorScheme.primary),
+  //     shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+  //   ),
+  // }
+
   ThemeData getTheme(BuildContext context, {required isLight}) => ThemeData(
         useMaterial3: true,
         colorScheme: _getColorScheme(isLight: isLight),

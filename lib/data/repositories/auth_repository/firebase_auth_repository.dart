@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hazir_app/data/enums/auth_status.dart';
 import 'package:hazir_app/data/exceptions/auth_exception.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 
@@ -15,7 +14,8 @@ class FirebaseAuthRepository implements AuthRepository {
       : _auth = FirebaseAuth.instance,
         _microsoftAuthProvider = MicrosoftAuthProvider() {
     _controller.add(AuthStatus.unkown);
-    _auth.authStateChanges().forEach((user) => _controller.add(user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated));
+    Future.delayed(const Duration(microseconds: 500))
+        .then((value) => _auth.authStateChanges().forEach((user) => _controller.add(user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated)));
   }
 
   @override

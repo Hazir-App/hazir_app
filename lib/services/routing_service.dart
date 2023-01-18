@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hazir_app/data/enums/auth_status.dart';
+import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:hazir_app/presentation/screens/login_screen/login_screen.dart';
 import 'package:hazir_app/presentation/screens/splash_screen/splash_screen.dart';
 

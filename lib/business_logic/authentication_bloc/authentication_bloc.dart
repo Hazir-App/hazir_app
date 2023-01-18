@@ -1,25 +1,29 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hazir_app/data/enums/auth_status.dart';
-import 'package:hazir_app/data/models/user.dart';
+import 'package:hazir_app/data/repositories/user_repository/models/user/user.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
+import 'package:hazir_app/data/repositories/user_repository/user_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final AuthRepository _authenticationRepository;
+  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
+
   late StreamSubscription<AuthStatus> _authenticationStatusSubscription;
 
   AuthenticationBloc({
     required AuthRepository authenticationRepository,
-  })  : _authenticationRepository = authenticationRepository,
+    required UserRepository userRepository,
+  })  : _authRepository = authenticationRepository,
+        _userRepository = userRepository,
         super(const AuthenticationState.unknown()) {
     on<AuthenticationStatusChanged>(_onAuthenticationStatusChanged);
     on<AuthenticationLogoutRequested>(_onAuthenticationLogoutRequested);
 
-    _authenticationStatusSubscription = _authenticationRepository.status.listen(
+    _authenticationStatusSubscription = _authRepository.status.listen(
       (status) => add(AuthenticationStatusChanged(status)),
     );
   }
@@ -27,7 +31,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   @override
   Future<void> close() {
     _authenticationStatusSubscription.cancel();
-    _authenticationRepository.dispose();
+    _authRepository.dispose();
     return super.close();
   }
 
@@ -50,11 +54,11 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     AuthenticationLogoutRequested event,
     Emitter<AuthenticationState> emit,
   ) {
-    _authenticationRepository.signOut();
+    _authRepository.signOut();
   }
 
   Future<User?> _tryGetUser() async {
-    await Future.delayed(const Duration(seconds: 1));
-    return const User(firstName: "Abuzar", studentId: "ar06194");
+    await _userRepository.getCurrentUserData();
+    return _userRepository.currentUser;
   }
 }

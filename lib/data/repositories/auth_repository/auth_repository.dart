@@ -1,7 +1,10 @@
-import 'package:hazir_app/data/enums/auth_status.dart';
-
+enum AuthStatus {
+  unauthenticated,
+  authenticated,
+  unkown,
+}
 abstract class AuthRepository {
-  Stream<AuthStatus> get status;
+  Stream<AuthStatus> get status;  
   Future<void> signInWithMicrosoft();
   Future<void> signOut();
   void dispose();
