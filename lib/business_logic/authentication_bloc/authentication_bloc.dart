@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hazir_app/data/repositories/user_repository/models/user/user.dart';
+import 'package:hazir_app/data/models/user.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:hazir_app/data/repositories/user_repository/user_repository.dart';
 

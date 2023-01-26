@@ -1,25 +1,30 @@
 part of 'home_bloc.dart';
 
-enum HomeScreenStatus {
-  loading,
-  loaded,
-  refreshing,
-  error,
-}
 
-class HomeState extends Equatable {
-  final HomeScreenStatus status;
+abstract class HomeState extends Equatable {
   final User user;
-  final String? errorMessage;
-
-  const HomeState._({this.status = HomeScreenStatus.loading, this.user = User.empty, this.errorMessage});
-
-  const HomeState.loading({required User user}) : this._(status: HomeScreenStatus.loading, user: user);
-  const HomeState.loaded({required User user}) : this._(status: HomeScreenStatus.loaded, user: user);
-  const HomeState.refresh({required User user}) : this._(status: HomeScreenStatus.refreshing, user: user);
-  const HomeState.error({required User user, String? errorMessage}) : this._(status: HomeScreenStatus.error, user: user, errorMessage: errorMessage);
-
+  const HomeState({required this.user});
 
   @override
-  List<Object?> get props => [status,user,errorMessage];
+  List<Object?> get props => [user];
 }
+
+class HomeStateLoading extends HomeState {
+  const HomeStateLoading({required super.user});
+}
+
+class HomeStateLoaded extends HomeState {
+  final Enrollment enrollment;
+  const HomeStateLoaded({required super.user, required this.enrollment});
+}
+
+class HomeStateError extends HomeState {
+  final String errorMessage;
+  const HomeStateError({required super.user, required this.errorMessage});
+}
+
+class HomeStateRefresh extends HomeState {
+  final Enrollment enrollment;
+  const HomeStateRefresh({required super.user, required this.enrollment});
+}
+

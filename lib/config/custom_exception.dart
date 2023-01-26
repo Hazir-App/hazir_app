@@ -1,15 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:hazir_app/config/logger.dart';
 
 abstract class CustomException extends Equatable implements Exception {
   final String? statusCode;
   final String? message;
+  final StackTrace? stackTrace;
 
-  CustomException({String? message, this.statusCode}) : message = _parseExceptionMessage(message);
+  CustomException({String? message, this.statusCode, this.stackTrace}) : message = _parseExceptionMessage(message);
 
   static String? _parseExceptionMessage(String? message) {
+    String tempMessage = message ?? '';
     if (message != null) {
-      String tempMessage = message.toLowerCase();
-      List<String> stopWords = ['exception:', 'error:', 'supabase', 'socket'];
+      List<String> stopWords = ['exception:', 'error:', 'supabase', 'socket', 'microsoft.com', 'response'];
       for (String word in stopWords) {
         if (tempMessage.contains(word)) {
           return null;

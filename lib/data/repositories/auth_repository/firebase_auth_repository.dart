@@ -25,12 +25,16 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<void> signInWithMicrosoft() async {
     try {
       if (kIsWeb) {
-        await FirebaseAuth.instance.signInWithPopup(_microsoftAuthProvider);
+        await _auth.signInWithPopup(_microsoftAuthProvider);
       } else {
-        await FirebaseAuth.instance.signInWithProvider(_microsoftAuthProvider);
+        await _auth.signInWithProvider(_microsoftAuthProvider);
+      }
+      if (_auth.currentUser == null || !_auth.currentUser!.email!.contains("@st.habib.edu.pk")) {
+        await _auth.signOut();
+        throw AuthException(message: "You are not a student of Habib University", statusCode: "invalid-email");
       }
     } on FirebaseAuthException catch (e) {
-      throw AuthException(message: e.message, statusCode: e.code);
+      throw AuthException(message: e.message, statusCode: e.code, stackTrace: e.stackTrace);
     }
   }
 

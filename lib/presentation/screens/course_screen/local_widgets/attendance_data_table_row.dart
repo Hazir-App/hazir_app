@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hazir_app/data/models/enums/attendance_status.dart';
 import 'package:intl/intl.dart';
 
 import 'attendance_status_cell_row.dart';
 
-enum AttendanceStatus {
-  present,
-  absent,
-  notMarked;
-}
 
 class AttendanceDataTableRow extends DataRow {
   final DateTime date;

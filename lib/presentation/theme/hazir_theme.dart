@@ -13,7 +13,7 @@ class HazirTheme {
     onPrimary: Color(0xFFFFFFFF),
     primaryContainer: Color(0xFFFED6FF),
     onPrimaryContainer: Color(0xFF340041),
-    secondary: Color(0xFF705D00),
+    secondary: Color(0xFFd7c495),
     onSecondary: Color(0xFFFFFFFF),
     secondaryContainer: Color(0xFFFFE16D),
     onSecondaryContainer: Color(0xFF221B00),

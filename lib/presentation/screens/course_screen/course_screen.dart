@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hazir_app/data/models/attendance.dart';
+import 'package:hazir_app/data/models/course.dart';
+import 'package:hazir_app/data/models/enums/attendance_status.dart';
 
 import 'package:hazir_app/presentation/widgets/hazir_app_bar.dart';
 
@@ -13,6 +16,7 @@ class CourseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Course course = ModalRoute.of(context)!.settings.arguments as Course;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50,
@@ -26,7 +30,7 @@ class CourseScreen extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          "Ethics Of AI",
+          course.courseName,
           style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).colorScheme.onPrimary),
         ),
         shape: const RoundedRectangleBorder(
@@ -43,10 +47,10 @@ class CourseScreen extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    CourseInfo(title: 'Code', data: 'PHIL/CS 401'),
-                    CourseInfo(title: 'Section', data: 'L1'),
-                    CourseInfo(title: 'Absences', data: '10'),
+                  children: [
+                    CourseInfo(title: 'Component', data: course.component),
+                    CourseInfo(title: 'Section', data: course.courseSection),
+                    CourseInfo(title: 'Absences', data: course.absentCount.toString()),
                   ],
                 ),
               ],
@@ -71,23 +75,16 @@ class CourseScreen extends StatelessWidget {
                     label: Text('Status'),
                   ),
                 ],
-                rows: [
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.present),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.absent),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.present),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.absent),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.present),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.absent),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.present),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.absent),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                  AttendanceDataTableRow(context, date: DateTime.now(), attendanceStatus: AttendanceStatus.notMarked),
-                ],
+                rows: course.attendance
+                    .map(
+                      (Attendance attendance) => AttendanceDataTableRow(
+                        context,
+                        date: attendance.date,
+                        attendanceStatus: attendance.attendanceStatus,
+                      ),
+                    )
+                    .toList(),
+               
               )
             ],
           ),
