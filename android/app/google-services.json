@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "722126546862",
+    "firebase_url": "https://hazir-app-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "hazir-app",
     "storage_bucket": "hazir-app.appspot.com"
   },

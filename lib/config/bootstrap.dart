@@ -13,6 +13,7 @@ class Bootstrap {
       () async {   
         WidgetsFlutterBinding.ensureInitialized();
         await Firebase.initializeApp(
+          name: 'hazirApp',
           options: DefaultFirebaseOptions.currentPlatform,
         );
         FirebaseUIAuth.configureProviders([

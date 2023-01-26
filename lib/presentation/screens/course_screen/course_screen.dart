@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:hazir_app/data/models/attendance.dart';
 import 'package:hazir_app/data/models/course.dart';
-import 'package:hazir_app/data/models/enums/attendance_status.dart';
 
 import 'package:hazir_app/presentation/widgets/hazir_app_bar.dart';
 

@@ -6,14 +6,16 @@ import 'package:hazir_app/data/repositories/enrollment_repository/dto/firebase_e
 import 'package:hazir_app/data/repositories/enrollment_repository/enrollment_repository.dart';
 
 class FirebaseEnrollmentRepository implements EnrollmentRepository {
-  final DatabaseReference ref = FirebaseDatabase.instance.ref("https://hazir-dev.firebaseio.com/");
+  final FirebaseDatabase db;
+  FirebaseEnrollmentRepository() : db = FirebaseDatabase.instance;
   Enrollment? _enrollment;
   @override
   Enrollment? get enrollment => _enrollment;
 
   @override
   Future<void> getEnrollment(User user, String semesterCode) async {
-    final snapshot = await ref.child("${semesterCode}/${user.studentNumber}").get();
+    final ref = db.ref("$semesterCode/${user.studentNumber}");
+    final snapshot = await ref.get();
     if (!snapshot.exists) {
       logger.e("FirebaseEnrollmentRepository: getEnrollment: data is null");
       return;

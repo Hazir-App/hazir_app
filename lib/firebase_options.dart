@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '722126546862',
     projectId: 'hazir-app',
     authDomain: 'hazir-app.firebaseapp.com',
+    databaseURL: 'https://hazir-app-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'hazir-app.appspot.com',
     measurementId: 'G-B329J9M9K2',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:722126546862:android:6f4558ff51e64f8b278a3f',
     messagingSenderId: '722126546862',
     projectId: 'hazir-app',
+    databaseURL: 'https://hazir-app-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'hazir-app.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:722126546862:ios:fe9bb313df43e8c1278a3f',
     messagingSenderId: '722126546862',
     projectId: 'hazir-app',
+    databaseURL: 'https://hazir-app-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'hazir-app.appspot.com',
     iosClientId: '722126546862-mb9em1pnu94qikovr0bspl2goqr73dj9.apps.googleusercontent.com',
     iosBundleId: 'com.habib.hazirApp',
@@ -76,6 +79,7 @@ class DefaultFirebaseOptions {
     appId: '1:722126546862:ios:fe9bb313df43e8c1278a3f',
     messagingSenderId: '722126546862',
     projectId: 'hazir-app',
+    databaseURL: 'https://hazir-app-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'hazir-app.appspot.com',
     iosClientId: '722126546862-mb9em1pnu94qikovr0bspl2goqr73dj9.apps.googleusercontent.com',
     iosBundleId: 'com.habib.hazirApp',

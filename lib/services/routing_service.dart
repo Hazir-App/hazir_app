@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazir_app/config/logger.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:hazir_app/presentation/screens/login_screen/login_screen.dart';
 import 'package:hazir_app/presentation/screens/splash_screen/splash_screen.dart';
@@ -15,6 +16,7 @@ class RoutingService {
   void handleAuthenticationRouting(AuthStatus authStatus) {
     switch (authStatus) {
       case AuthStatus.authenticated:
+        logger.i('Authenticated');
         navigatorKey.currentState?.pushNamedAndRemoveUntil(HomeScreen.route, (route) => false);
         break;
       case AuthStatus.unauthenticated:

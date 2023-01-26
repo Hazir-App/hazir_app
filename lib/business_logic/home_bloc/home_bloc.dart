@@ -20,8 +20,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   void _onHomeGet(HomeGet event, Emitter<HomeState> emit) async {
+    try{
     emit(HomeStateLoading(user: _userRepository.currentUser));
     await _enrollmentRepository.getEnrollment(_userRepository.currentUser, '2311');
     emit(HomeStateLoaded(user: _userRepository.currentUser, enrollment: _enrollmentRepository.enrollment!));
+    }catch(e){
+      emit(HomeStateError(user: _userRepository.currentUser, errorMessage: e.toString()));
+    }
   }
 }

@@ -12,7 +12,7 @@ class FirebaseUserRepository implements UserRepository {
   User _currentUser = User.empty;
 
   @override
-  User get currentUser => _currentUser;
+  User get currentUser => FirebaseUserDTO(_auth.currentUser!).convert();
 
   @override
   Future<void> getCurrentUserData() {

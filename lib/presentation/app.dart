@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hazir_app/business_logic/authentication_bloc/authentication_bloc.dart';
+import 'package:hazir_app/config/logger.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:hazir_app/data/repositories/auth_repository/firebase_auth_repository.dart';
 import 'package:hazir_app/data/repositories/user_repository/firebase_user_repository.dart';

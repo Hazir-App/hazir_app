@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:hazir_app/config/logger.dart';
 
 abstract class CustomException extends Equatable implements Exception {
   final String? statusCode;

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hazir_app/config/logger.dart';
 import 'package:hazir_app/data/models/user.dart';
 import 'package:hazir_app/data/repositories/auth_repository/auth_repository.dart';
 import 'package:hazir_app/data/repositories/user_repository/user_repository.dart';
@@ -39,6 +40,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     AuthenticationStatusChanged event,
     Emitter<AuthenticationState> emit,
   ) async {
+    try{
     switch (event.status) {
       case AuthStatus.unauthenticated:
         return emit(const AuthenticationState.unauthenticated());
@@ -47,6 +49,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
         return emit(user != null ? AuthenticationState.authenticated(user) : const AuthenticationState.unauthenticated());
       default:
         return emit(const AuthenticationState.unknown());
+    }
+    }catch(e){
+      logger.e(e);
     }
   }
 
