@@ -10,7 +10,7 @@ class Course extends Equatable {
   final String classNumber;
   final String courseName;
   final String courseSection;
-  final int presentPercentage;
+  final double presentPercentage;
   final int totalClasses;
   final int allowedAbsenses;
 

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hazir_app/config/logger.dart';
 import 'package:hazir_app/data/models/enrollment.dart';
 import 'package:hazir_app/data/models/user.dart';
 import 'package:hazir_app/data/repositories/enrollment_repository/enrollment_repository.dart';
@@ -17,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         _enrollmentRepository = enrollmentRepository,
         super(HomeStateLoading(user: userRepository.currentUser)) {
     on<HomeGet>(_onHomeGet);
+    on<HomeRefresh>(_onHomeRefresh);
   }
 
   void _onHomeGet(HomeGet event, Emitter<HomeState> emit) async {
@@ -25,7 +27,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await _enrollmentRepository.getEnrollment(_userRepository.currentUser, '2311');
     emit(HomeStateLoaded(user: _userRepository.currentUser, enrollment: _enrollmentRepository.enrollment!));
     }catch(e){
+      logger.e(e);
       emit(HomeStateError(user: _userRepository.currentUser, errorMessage: e.toString()));
+    }
+  }
+
+  void _onHomeRefresh(HomeRefresh event, Emitter<HomeState> emit ) async {
+    try{
+    emit(HomeStateRefresh(user: _userRepository.currentUser,enrollment: _enrollmentRepository.enrollment!));
+    await _enrollmentRepository.refresh(_userRepository.currentUser, '2311');
+    emit(HomeStateLoaded(user: _userRepository.currentUser, enrollment: _enrollmentRepository.enrollment!));
+    }catch(e){
+      logger.e(e);
+      emit(HomeStateError(user: _userRepository.currentUser, errorMessage: e.toString(), enrollment: _enrollmentRepository.enrollment!));
     }
   }
 }

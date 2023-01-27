@@ -20,7 +20,8 @@ class HomeStateLoaded extends HomeState {
 
 class HomeStateError extends HomeState {
   final String errorMessage;
-  const HomeStateError({required super.user, required this.errorMessage});
+    final Enrollment? enrollment;
+  const HomeStateError({required super.user, required this.errorMessage, this.enrollment});
 }
 
 class HomeStateRefresh extends HomeState {

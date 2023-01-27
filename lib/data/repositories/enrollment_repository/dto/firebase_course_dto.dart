@@ -1,4 +1,5 @@
 import 'package:hazir_app/config/dto.dart';
+import 'package:hazir_app/config/logger.dart';
 import 'package:hazir_app/data/models/attendance.dart';
 import 'package:hazir_app/data/models/course.dart';
 import 'package:hazir_app/data/repositories/enrollment_repository/dto/firebase_attendance_dto.dart';
@@ -9,6 +10,7 @@ class FirebaseCourseDTO extends DTO<Map<String, dynamic>, Course> {
 
   @override
   Course convert() {
+    logger.i("List convert: ${from['attendance']}");
     return Course(
       component: "Lecture",
       code: code,
@@ -24,10 +26,11 @@ class FirebaseCourseDTO extends DTO<Map<String, dynamic>, Course> {
     );
   }
 
-  List<Attendance> _parseAttendance(List<Map<String, String>> attendanceMap) {
+  List<Attendance> _parseAttendance(List attendanceMap) {
+    logger.i("List: $attendanceMap");
     List<Attendance> attendance = <Attendance>[];
     for (var v in attendanceMap) {
-      attendance.add(FirebaseAttendanceDTO(v).convert());
+      attendance.add(FirebaseAttendanceDTO(Map<String, String>.from(v as Map)).convert());
     }
     return attendance;
   }

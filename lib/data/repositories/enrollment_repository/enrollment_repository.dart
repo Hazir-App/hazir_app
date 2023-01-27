@@ -4,4 +4,5 @@ import 'package:hazir_app/data/models/user.dart';
 abstract class EnrollmentRepository {
   Enrollment? get enrollment;
   Future<void> getEnrollment(User user, String semesterCode);
+  Future<void> refresh(User user, String semesterCode);
 }

@@ -107,7 +107,7 @@ class HazirTheme {
   // }
 
   ThemeData getTheme(BuildContext context, {required isLight}) => ThemeData(
-        useMaterial3: true,
+        useMaterial3: false,
         colorScheme: _getColorScheme(isLight: isLight),
         appBarTheme: _getAppBarTheme(context),
         extensions: _getThemeExtensions(context),

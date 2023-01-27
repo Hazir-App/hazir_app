@@ -8,6 +8,7 @@ import 'package:hazir_app/presentation/screens/home_screen/local_widgets/course_
 import 'package:hazir_app/presentation/widgets/hazir_app_bar.dart';
 import 'package:hazir_app/presentation/widgets/shimmer_effect.dart';
 import 'package:hazir_app/services/snackbar_service.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class HomeScreen extends StatelessWidget {
@@ -18,13 +19,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => FirebaseEnrollmentRepository(),
-      child: const HomeScreenView(),
+      child:  HomeScreenView(),
     );
   }
 }
 
 class HomeScreenView extends StatelessWidget {
-  const HomeScreenView({Key? key}) : super(key: key);
+  HomeScreenView({Key? key}) : super(key: key);
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -33,9 +36,13 @@ class HomeScreenView extends StatelessWidget {
         enrollmentRepository: context.read<FirebaseEnrollmentRepository>(),
       )..add(HomeGet()),
       child: BlocConsumer<HomeBloc, HomeState>(listener: (context, state) {
-        if (state is HomeStateError) {
+        if (state is HomeStateError && state.enrollment!=null) {
           context.read<SnackbarService>().showError();
         }
+        if (state is HomeStateLoaded){
+              _refreshController.refreshCompleted();
+        }
+
       }, builder: (context, state) {
         return Scaffold(
           appBar: HazirAppBar(
@@ -72,13 +79,19 @@ class HomeScreenView extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           body: ShimmerEffect(
             isLoading: state is HomeStateLoading,
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8, childAspectRatio: 0.9),
-              padding: const EdgeInsets.all(16),
-              itemCount: (state is HomeStateLoaded) ? state.enrollment.courses.length : 8,
-              itemBuilder: (context, index) {
-                return CourseCard(course: (state is HomeStateLoaded) ? state.enrollment.courses[index] : null);
-              },
+            child: Container(
+            //   onRefresh: () {
+            //   context.read<HomeBloc>().add(HomeRefresh());
+            // },
+            // controller: _refreshController,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8, childAspectRatio: 0.9),
+                padding: const EdgeInsets.all(16),
+                itemCount: (state is HomeStateLoaded) ? state.enrollment.courses.length : 8,
+                itemBuilder: (context, index) {
+                  return CourseCard(course: (state is HomeStateLoaded) ? state.enrollment.courses[index] : null);
+                },
+              ),
             ),
           ),
         );
@@ -86,3 +99,5 @@ class HomeScreenView extends StatelessWidget {
     );
   }
 }
+
+

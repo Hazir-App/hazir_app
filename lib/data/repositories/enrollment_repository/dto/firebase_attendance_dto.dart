@@ -8,7 +8,7 @@ class FirebaseAttendanceDTO extends DTO<Map<String, dynamic>, Attendance> {
   @override
   Attendance convert() {
     return Attendance(
-      date: DateTime.now(),
+      date: DateTime.parse(from['date']),
       attendanceStatus: _parseAttendanceStatus(from['present_status']),
     );
   }
