@@ -1,16 +1,32 @@
-# hazir_app
+# Hazir App 
+Hazir App was built for Habib University student body to help them track their attendance amidst severe attandace policies by the management.
 
-A new Flutter project.
+Interesting, we built this behind the back of the management and reverse engineered the app to get the attendance data. We found a vulnerability in the attandance system and exploited it to get the attendance data.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- [x] Login
+- [x] Register
+- [x] Forgot Password
+- [x] Reset Password
+- [x] Logout
+- [x] Change Password
+- [x] Change Profile Picture
+- [x] Change Username
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Tech Stack
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [x] Flutter
+- [x] Dart
+- [x] Firebase
+- [x] Firebase Auth
+- [x] Firebase Firestore
+- [x] Firebase Storage
+- [x] Firebase Cloud Functions
+
+## Screenshots
+
+![Screenshot1](./images/hazir.jpeg)
+![Register](./images/hazir-1.jpeg)
+![Forgot Password](./images/hazir-2.jpeg)
